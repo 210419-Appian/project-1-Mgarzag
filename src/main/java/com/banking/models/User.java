@@ -8,5 +8,11 @@ public class User {
 	  private String lastName; // not null
 	  private String email; // not null
 	  private Role role;
+	  
+	  //Constructor
+	  public User(int newUserId, String newUser) {
+		  this.userId = newUserId;
+		  this.username = newUser;
+	  }
 
 }
