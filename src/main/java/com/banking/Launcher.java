@@ -1,9 +1,11 @@
 package com.banking;
 
+import com.banking.models.User;
+
 public class Launcher {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		User user = new User();
 
 	}
 
