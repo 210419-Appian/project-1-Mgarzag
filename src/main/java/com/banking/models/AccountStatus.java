@@ -1,6 +1,6 @@
 package com.banking.models;
 
-public class AccountStatus extends Account {
+public class AccountStatus {
 	private int statusId; // primary key
 	  private String status; // not null, unique
 	  
@@ -8,9 +8,24 @@ public class AccountStatus extends Account {
 		 super(); 
 	  }
 	  
-	  public AccountStatus(int AccountId, double Balance, AccountStatus Status, AccountType Type, int statusId, String status) {
-		  super(AccountId, Balance, Status, Type);
+	  public AccountStatus(int statusId, String status) {
 		  this.statusId = statusId;
+		  this.status = status;
+	  }
+	  
+	  public int getStatusId() {
+		  return statusId;
+	  }
+	  
+	  public void setStatusId(int statusId) {
+		  this.statusId = statusId;
+	  }
+	  
+	  public String getStatus() {
+		  return status;
+	  }
+	  
+	  public void setStatus(String status) {
 		  this.status = status;
 	  }
 

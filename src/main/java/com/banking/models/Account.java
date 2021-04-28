@@ -20,5 +20,39 @@ public class Account {
 		 status = Status;
 		 type = Type;
 	 }
+	 
+	 public int getAccountId() {
+		  return accountId;
+	  }
+	 
+	 public void setAccountId(int accountId) {
+		  this.accountId = accountId;
+	  }
+	 
+	 public double getBalance() {
+		 return balance;
+	 }
+	 
+	 public void setBalance(double balance) {
+		 this.balance = balance;
+	 }
+	 
+	 private AccountStatus getAccountStatus() {
+		 return status;
+	 }
+	 
+	 private void setAccountStatus(AccountStatus status) {
+		 this.status = status;
+	 }
+	 
+	 private AccountType getAccountType() {
+		 return type;
+	 }
+	 
+	 private void setAccountType(AccountType type) {
+		 this.type = type;
+	 }
+	 
+	 
 
 }
