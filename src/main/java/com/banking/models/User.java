@@ -1,6 +1,7 @@
 package com.banking.models;
 
 public class User {
+	
 	  private int userId; // primary key
 	  private String username; // not null, unique
 	  private String password; // not null
@@ -9,22 +10,32 @@ public class User {
 	  private String email; // not null
 	  private Role role;
 	  
+		public User(int userId, String username, String password, String firstName, String lastName, String email,
+				Role role) {
+			super();
+			this.userId = userId;
+			this.username = username;
+			this.password = password;
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.email = email;
+			this.role = role;
+		}
+	  
 		public User() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
-	  
-	public User(int userId, String username, String password, String firstName, String lastName, String email,
-			Role role) {
-		super();
-		this.userId = userId;
-		this.username = username;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.role = role;
-	}
+		
+		public User(int userId, String username, String password, String firstName, String lastName, String email) {
+			super();
+			this.userId = userId;
+			this.username = username;
+			this.password = password;
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.email = email;
+		}
 
 	public int getUserId() {
 		return userId;
