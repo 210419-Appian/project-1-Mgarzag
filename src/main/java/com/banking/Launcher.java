@@ -10,6 +10,9 @@ public class Launcher {
 	private static UserService uService = new UserService();
 
 	public static void main(String[] args) {
+		
+		System.out.println("=====================");
+		
 		List<User> list = uService.getAllUser();
 		
 		System.out.println(list);

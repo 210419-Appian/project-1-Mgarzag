@@ -105,4 +105,16 @@ public class UserDAOImpl implements UserDAO {
 		return false;
 	}
 
+	@Override
+	public List<User> findByRole(String role) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean addUserWithRole(User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
