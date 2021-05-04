@@ -117,4 +117,10 @@ public class UserDAOImpl implements UserDAO {
 		return false;
 	}
 
+	@Override
+	public boolean updateUser(User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

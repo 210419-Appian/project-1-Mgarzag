@@ -11,5 +11,5 @@ public interface UserDAO {
 	public boolean addUser(User user);
 	public List<User> findByRole(String role);
 	public boolean addUserWithRole(User user);
-	//public boolean updateUser(User user);
+	public boolean updateUser(User user);
 }
