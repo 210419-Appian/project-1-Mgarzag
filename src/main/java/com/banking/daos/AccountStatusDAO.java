@@ -9,6 +9,7 @@ public interface AccountStatusDAO {
 		
 		public boolean addAccountStatus(AccountStatus a);
 		public boolean updateAccountStatus(AccountStatus a);
+		public AccountStatus findById(String aStatus);
 
 
 }

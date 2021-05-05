@@ -10,6 +10,8 @@ public interface AccountDAO {
 	public Account findById(int id);
 	public boolean addAccount(Account a);
 	public List<Account> findByAccountStatus(String status);
-	public boolean addAccountWithStatus(Account a);
+	public boolean addAccountWithStatus(Account status);
+	public List<Account> findByAccountType(String type);
+	public boolean addAccountWithType(Account type);
 
 }

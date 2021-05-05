@@ -8,5 +8,6 @@ import com.banking.models.AccountType;
 public interface AccountTypeDAO {
 	
 	public boolean addAccountType(AccountType accounttype);
+	public AccountType findById(String aType);
 
 }

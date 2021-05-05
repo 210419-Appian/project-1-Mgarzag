@@ -9,11 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.banking.models.Account;
+import com.banking.models.AccountStatus;
+import com.banking.models.AccountType;
 import com.banking.models.User;
 import com.banking.utils.ConnectionUtil;
 
 public class AccountDAOImpl implements AccountDAO {
 
+	private static AccountStatusDAO aSDao = new AccountStatusDAOImpl();
+	private static AccountTypeDAO aTDao = new AccountTypeDAOImpl();
 	@Override
 	public List<Account> findAll() {
 		try(Connection conn = ConnectionUtil.getConnection()) {
@@ -27,11 +31,20 @@ public class AccountDAOImpl implements AccountDAO {
 			List<Account> list = new ArrayList<>();
 			
 			while (result.next()) {
-				Account account = new Account();
-				account.setAccountId(result.getInt("accountid"));
-				account.setBalance(result.getDouble("balance"));
-				
+				Account account = new Account(
+				result.getInt("accountid"), 
+				result.getDouble("balance"), 
+				null,
+				null
+				); 
+				String aStatus = result.getString("account_status");
+				String aType = result.getString("account_type");
+				if(aStatus != null) {
+					account.setStatus(aSDao.findById(aStatus));
+					account.setType(aTDao.findById(aType));
+				}
 				list.add(account);
+				
 			}
 			
 			return list;
@@ -101,9 +114,23 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 
 	@Override
-	public boolean addAccountWithStatus(Account a) {
+	public boolean addAccountWithStatus(Account status) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public List<Account> findByAccountType(String type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean addAccountWithType(Account type) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 
 }

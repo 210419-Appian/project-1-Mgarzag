@@ -1,4 +1,4 @@
-package com.revature.services;
+package com.banking.services;
 
 import java.util.List;
 
@@ -12,9 +12,7 @@ public class AccountService {
 	
 	public List<Account> getAllAccount() {
 		
-		List<Account> list = aDao.findAll();
-		
-		return list;
+		return aDao.findAll();
 		
 	}
 	

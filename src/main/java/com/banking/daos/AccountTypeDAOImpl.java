@@ -19,4 +19,10 @@ public class AccountTypeDAOImpl implements AccountTypeDAO {
 		return false;
 	}
 
+	@Override
+	public AccountType findById(String aType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
