@@ -24,12 +24,8 @@ public class UserService {
 		return uDao.findById(id);
 	}
 	
-	public boolean createUser(User user) {
-		if(0 ==(user.getUserId())) {
-			return false;
-		}else {
-			return uDao.addUser(user);
-		}
+	public boolean addUser(User u) {
+		return uDao.addUser(u);
 	}
 
 }

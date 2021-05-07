@@ -8,8 +8,9 @@ public interface UserDAO {
 	
 	public List<User> findAll();
 	public User findById(int id);
-	public boolean addUser(User user);
+	public boolean addUser(User u);
 	public List<User> findByRole(String role);
 	public boolean addUserWithRole(User user);
 	public boolean updateUser(User user);
+	
 }

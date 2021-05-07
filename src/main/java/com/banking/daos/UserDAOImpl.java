@@ -12,6 +12,8 @@ import com.banking.models.User;
 import com.banking.utils.ConnectionUtil;
 
 public class UserDAOImpl implements UserDAO {
+	
+	private static RoleDAO rDao = new RoleDAOImpl();
 
 	@Override
 	public List<User> findAll() {
@@ -26,14 +28,19 @@ public class UserDAOImpl implements UserDAO {
 			List<User> list = new ArrayList<>();
 			
 			while (result.next()) {
-				User user = new User();
-				user.setUserId(result.getInt("userid"));
-				user.setUsername(result.getString("username"));
-				user.setPassword(result.getString("password"));
-				user.setFirstName(result.getString("firstname"));
-				user.setLastName(result.getString("lastname"));
-				user.setEmail(result.getString("email"));
-				
+				User user = new User(
+				result.getInt("userid"),
+				result.getString("username"),
+				result.getString("password"),
+				result.getString("firstname"),
+				result.getString("lastname"),
+				result.getString("email"),
+				null
+				);
+			int rId = result.getInt("role");
+			if(rId!=0) {
+				user.setRole(rDao.findById(rId));
+			}
 				list.add(user);
 			}
 			
@@ -81,8 +88,8 @@ public class UserDAOImpl implements UserDAO {
 	public boolean addUser(User user) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
 			
-			String sql = "INSERT INTO \"user\" (userid, username, password, firstname, lastname, email)"
-					+ "VALUES(?,?,?,?,?,?);";
+			String sql = "INSERT INTO \"user\" (userid, username, password, firstname, lastname, email, role)"
+					+ "VALUES(?,?,?,?,?,?,?);";
 			
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
@@ -93,6 +100,11 @@ public class UserDAOImpl implements UserDAO {
 			statement.setString(++index, user.getFirstName());
 			statement.setString(++index, user.getLastName());
 			statement.setString(++index, user.getEmail());
+			if(user.getRole() != null) {
+				statement.setLong(++index, user.getRole().getRoleId());	
+			} else {
+				statement.setNull(++index, java.sql.Types.INTEGER);
+			}
 			
 			statement.execute();
 			
