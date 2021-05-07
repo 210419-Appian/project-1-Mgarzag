@@ -27,7 +27,13 @@ public class AccountStatusDAOImpl implements AccountStatusDAO {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
+	@Override
+	public AccountStatus findById(String aStatus) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }

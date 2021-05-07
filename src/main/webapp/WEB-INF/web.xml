@@ -13,4 +13,39 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<servlet>
+		<display-name>Register</display-name>
+		<servlet-name>RegisterServlet</servlet-name>
+		<servlet-class>com.banking.servlets.RegisterServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<display-name>Login</display-name>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>com.banking.servlets.LoginServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<description>Used to find users</description>
+		<display-name>Administrative</display-name>
+		<servlet-name>AdministrativeServlet</servlet-name>
+		<servlet-class>com.banking.servlets.AdministrativeServlet</servlet-class>
+	</servlet>	
+	
+	<servlet-mapping>
+		<servlet-name>RegisterServlet</servlet-name>
+		<url-pattern>/register</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>AdministrativeServlet</servlet-name>
+		<url-pattern>/users</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
