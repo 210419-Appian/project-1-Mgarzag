@@ -18,6 +18,7 @@ public class AccountDAOImpl implements AccountDAO {
 
 	private static AccountStatusDAO aSDao = new AccountStatusDAOImpl();
 	private static AccountTypeDAO aTDao = new AccountTypeDAOImpl();
+	private static UserDAO uDao = new UserDAOImpl();
 	@Override
 	public List<Account> findAll() {
 		try(Connection conn = ConnectionUtil.getConnection()) {
@@ -35,13 +36,16 @@ public class AccountDAOImpl implements AccountDAO {
 				result.getInt("accountid"), 
 				result.getDouble("balance"), 
 				null,
+				null,
 				null
 				); 
 				String aStatus = result.getString("account_status");
 				String aType = result.getString("account_type");
+				String aUser = result.getString("user");
 				if(aStatus != null) {
 					account.setStatus(aSDao.findById(aStatus));
 					account.setType(aTDao.findById(aType));
+					account.setUser(uDao.findById(aUser));
 				}
 				list.add(account);
 				
@@ -72,7 +76,6 @@ public class AccountDAOImpl implements AccountDAO {
 			while (result.next()) {
 				account.setAccountId(result.getInt("accountid"));
 				account.setBalance(result.getDouble("balance"));
-				
 			}
 			
 			return account;
@@ -95,6 +98,7 @@ public class AccountDAOImpl implements AccountDAO {
 			int index = 0;
 			statement.setLong(++index, a.getAccountId());
 			statement.setDouble(++index, a.getBalance());
+			
 			
 			statement.execute();
 			
@@ -120,15 +124,40 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 
 	@Override
-	public List<Account> findByAccountType(String type) {
+	public boolean update(Account a, User u) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public boolean addAccountWithType(Account type) {
+	public int getUserId(Account user) {
 		// TODO Auto-generated method stub
-		return false;
+		return 0;
+	}
+
+	@Override
+	public double deposit(double amount, double balance) {
+		double newBalance = balance + amount;
+		balance = newBalance;
+		return 0;
+	}
+
+	@Override
+	public double withdraw(double amount) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double transferFunds(double amount) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double setBalance(double amount) {
+		double newBalance
+		return 0;
 	}
 
 

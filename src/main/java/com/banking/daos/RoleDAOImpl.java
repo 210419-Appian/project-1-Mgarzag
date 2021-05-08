@@ -70,7 +70,25 @@ public class RoleDAOImpl implements RoleDAO {
 
 	@Override
 	public boolean addRole(Role role) {
-		// TODO Auto-generated method stub
+try (Connection conn = ConnectionUtil.getConnection()) {
+			
+			String sql = "INSERT INTO \"role\" (roleid, role)"
+					+ "VALUES(?,?);";
+			
+			PreparedStatement statement = conn.prepareStatement(sql);
+			
+			int index = 0;
+			statement.setLong(++index, role.getRoleId());
+			statement.setString(++index, role.getRole());
+			
+			statement.execute();
+			
+			return true;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+			
 		return false;
 	}
 

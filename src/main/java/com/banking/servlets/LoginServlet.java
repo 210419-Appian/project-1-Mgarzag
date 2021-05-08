@@ -17,10 +17,10 @@ public class LoginServlet extends HttpServlet {
 		private UserService uService = new UserService();
 		private ObjectMapper om = new ObjectMapper();
 		
-		@Override
-		protected void doGet(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
-			List<User> list = uService.getAllUser();
+		@Override 
+		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 			
 		}
+		
 
 	}

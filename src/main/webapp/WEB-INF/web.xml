@@ -33,6 +33,13 @@
 		<servlet-class>com.banking.servlets.AdministrativeServlet</servlet-class>
 	</servlet>	
 	
+	<servlet>
+		<description></description>
+		<display-name>Account</display-name>
+		<servlet-name>AccountServlet</servlet-name>
+		<servlet-class>com.banking.servlets.AccountServlet</servlet-class>
+	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>RegisterServlet</servlet-name>
 		<url-pattern>/register</url-pattern>
@@ -46,6 +53,13 @@
 	<servlet-mapping>
 		<servlet-name>AdministrativeServlet</servlet-name>
 		<url-pattern>/users</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>AccountServlet</servlet-name>
+		<url-pattern>/accounts/withdraw</url-pattern>
+		<url-pattern>/accounts/deposit</url-pattern>
+		<url-pattern>/accounts/transfer</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

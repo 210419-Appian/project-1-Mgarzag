@@ -5,17 +5,19 @@ public class Account {
 	 private double balance;  // not null
 	 private AccountStatus status;
 	 private AccountType type;
+	 private User user;
 	 
 	public Account() {
 		super();
 	}
 
-	public Account(int accountId, double balance, AccountStatus status, AccountType type) {
+	public Account(int accountId, double balance, AccountStatus status, AccountType type, User user) {
 		super();
 		this.accountId = accountId;
 		this.balance = balance;
 		this.status = status;
 		this.type = type;
+		this.user = user;
 	}
 
 	public int getAccountId() {
@@ -50,6 +52,14 @@ public class Account {
 		this.type = type;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -58,6 +68,9 @@ public class Account {
 		long temp;
 		temp = Double.doubleToLongBits(balance);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -74,14 +87,30 @@ public class Account {
 			return false;
 		if (Double.doubleToLongBits(balance) != Double.doubleToLongBits(other.balance))
 			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "Account [accountId=" + accountId + ", balance=" + balance + ", status=" + status + ", type=" + type
-				+ "]";
-	} 
-	 
+				+ ", user=" + user + "]";
+	}
+	
+	
 
 }

@@ -135,4 +135,10 @@ public class UserDAOImpl implements UserDAO {
 		return false;
 	}
 
+	@Override
+	public User findById(String aUser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
