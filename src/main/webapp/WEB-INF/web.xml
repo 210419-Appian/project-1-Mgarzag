@@ -57,9 +57,7 @@
 	
 	<servlet-mapping>
 		<servlet-name>AccountServlet</servlet-name>
-		<url-pattern>/accounts/withdraw</url-pattern>
-		<url-pattern>/accounts/deposit</url-pattern>
-		<url-pattern>/accounts/transfer</url-pattern>
+		<url-pattern>/accounts</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

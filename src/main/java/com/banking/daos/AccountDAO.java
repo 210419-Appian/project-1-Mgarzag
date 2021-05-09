@@ -17,6 +17,5 @@ public interface AccountDAO {
 	public double deposit(double amount, double balance);
 	public double withdraw(double amount);
 	public double transferFunds(double amount);
-	public double setBalance(double amount);
 
 }

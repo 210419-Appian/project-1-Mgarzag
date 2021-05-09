@@ -20,12 +20,16 @@ public class AccountService {
 		return aDao.findById(id);
 	}
 	
-	public boolean createAccount(Account account) {
-		if(0 ==(account.getAccountId())) {
+	public boolean addAccount(Account account) {
+		if(-1 ==(account.getAccountId())) {
 			return false;
 		}else {
 			return aDao.addAccount(account);
 		}
+	}
+	
+	public double deposit(double amount, double balance) {
+		return aDao.deposit(amount, balance);
 	}
 
 }

@@ -39,13 +39,13 @@ public class AccountDAOImpl implements AccountDAO {
 				null,
 				null
 				); 
-				String aStatus = result.getString("account_status");
-				String aType = result.getString("account_type");
-				String aUser = result.getString("user");
-				if(aStatus != null) {
-					account.setStatus(aSDao.findById(aStatus));
-					account.setType(aTDao.findById(aType));
-					account.setUser(uDao.findById(aUser));
+				int aStatusId = result.getInt("account_status");
+				int aTypeId = result.getInt("account_type");
+				int aUserId = result.getInt("user");
+				if(aStatusId != 0) {
+					account.setStatus(aSDao.findById(aStatusId));
+					account.setType(aTDao.findById(aTypeId));
+					account.setUser(uDao.findById(aUserId));
 				}
 				list.add(account);
 				
@@ -90,15 +90,29 @@ public class AccountDAOImpl implements AccountDAO {
 	public boolean addAccount(Account a) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
 			
-			String sql = "INSERT INTO account (accountid, balance)"
-					+ "VALUES(?,?);";
+			String sql = "INSERT INTO account (accountid, balance, status, type, user)"
+					+ "VALUES(?,?,?,?,?);";
 			
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
 			int index = 0;
 			statement.setLong(++index, a.getAccountId());
 			statement.setDouble(++index, a.getBalance());
-			
+			if(a.getStatus() != null) {
+				statement.setLong(++index, a.getStatus().getStatusId());	
+			} else {
+				statement.setNull(++index, java.sql.Types.INTEGER);
+			}
+			if(a.getType() != null) {
+				statement.setLong(++index, a.getType().getTypeId());
+			} else {
+				statement.setNull(++index, java.sql.Types.INTEGER);
+			}
+			if(a.getUser() != null) {
+				statement.setLong(++index, a.getUser().getUserId());
+			} else {
+				statement.setNull(++index, java.sql.Types.INTEGER);
+			}
 			
 			statement.execute();
 			
@@ -139,7 +153,7 @@ public class AccountDAOImpl implements AccountDAO {
 	public double deposit(double amount, double balance) {
 		double newBalance = balance + amount;
 		balance = newBalance;
-		return 0;
+		return balance;
 	}
 
 	@Override
@@ -153,13 +167,6 @@ public class AccountDAOImpl implements AccountDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	@Override
-	public double setBalance(double amount) {
-		double newBalance
-		return 0;
-	}
-
 
 
 }
