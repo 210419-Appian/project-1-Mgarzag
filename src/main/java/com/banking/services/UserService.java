@@ -1,6 +1,9 @@
 package com.banking.services;
 
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 
 import com.banking.daos.UserDAO;
 import com.banking.daos.UserDAOImpl;
@@ -14,8 +17,6 @@ public class UserService {
 		
 		List<User> list = uDao.findAll();
 		
-		//any business logic that would need to take place can happen here.
-		
 		return list;
 		
 	}
@@ -26,6 +27,16 @@ public class UserService {
 	
 	public boolean addUser(User u) {
 		return uDao.addUser(u);
+	}
+	
+	public boolean checkLogin(User u) {
+		User user = uDao.findById(u.getUsername());
+		System.out.println(user.toString());
+		
+		if((user.getPassword() != null && (u.getPassword().equals(user.getPassword())))) {
+			return true;
+		}
+		return false;
 	}
 
 }

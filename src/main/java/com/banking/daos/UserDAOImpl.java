@@ -74,6 +74,11 @@ public class UserDAOImpl implements UserDAO {
 				user.setLastName(result.getString("lastname"));
 				user.setEmail(result.getString("email"));
 				
+				int uRole = result.getInt("role"); 
+                if (uRole != 0) {
+                    user.setRole(rDao.findById(uRole));
+                }
+				
 			}
 			
 			return user;
@@ -140,5 +145,7 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

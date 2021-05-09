@@ -1,26 +1,23 @@
 package com.banking.servlets;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.banking.models.User;
-import com.banking.services.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.servlet.http.HttpSession;
 
 public class LoginServlet extends HttpServlet {
 		
-		private UserService uService = new UserService();
-		private ObjectMapper om = new ObjectMapper();
-		
 		@Override 
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-			
-		}
+				resp.setContentType("json");
+				PrintWriter out = resp.getWriter();
+				HttpSession ses = req.getSession(false);
+				
+		    }
 		
 
 	}

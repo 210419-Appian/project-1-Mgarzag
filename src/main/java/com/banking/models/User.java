@@ -151,6 +151,5 @@ public class User {
 				+ firstName + ", lastName=" + lastName + ", email=" + email + ", role=" + role + "]";
 	}
 	  
-	
 
 }
