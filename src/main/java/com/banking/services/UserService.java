@@ -1,9 +1,6 @@
 package com.banking.services;
 
-import java.io.PrintWriter;
 import java.util.List;
-
-import javax.servlet.RequestDispatcher;
 
 import com.banking.daos.UserDAO;
 import com.banking.daos.UserDAOImpl;

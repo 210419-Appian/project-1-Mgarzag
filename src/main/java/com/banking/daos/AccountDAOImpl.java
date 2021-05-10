@@ -90,7 +90,7 @@ public class AccountDAOImpl implements AccountDAO {
 	public boolean addAccount(Account a) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
 			
-			String sql = "INSERT INTO account (accountid, balance, status, type, user)"
+			String sql = "INSERT INTO account (accountid, balance, status, type, \"user\")"
 					+ "VALUES(?,?,?,?,?);";
 			
 			PreparedStatement statement = conn.prepareStatement(sql);
@@ -150,10 +150,22 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 
 	@Override
-	public double deposit(double amount, double balance) {
-		double newBalance = balance + amount;
-		balance = newBalance;
-		return balance;
+	public boolean deposit(int accountid, double balance) {
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			
+			String sql = "UPDATE account SET balance = '" + balance + "'where accountid'" + accountid + "'";
+			
+			PreparedStatement statement = conn.prepareStatement(sql);
+			
+			int index = 0;
+			statement.setDouble(++index, balance);
+			statement.setInt(++index, accountid);
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;	
 	}
 
 	@Override

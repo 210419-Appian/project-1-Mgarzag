@@ -22,7 +22,7 @@ public class RoleService {
 	}
 	
 	public boolean createRole(Role role) {
-		if(0 ==(role.getRoleId())) {
+		if(-1 ==(role.getRoleId())) {
 			return false;
 		}else {
 			return rDao.addRole(role);

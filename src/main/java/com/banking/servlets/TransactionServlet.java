@@ -2,6 +2,7 @@ package com.banking.servlets;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,7 @@ import com.banking.models.Account;
 import com.banking.services.AccountService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class AccountServlet extends HttpServlet {
+public class TransactionServlet extends HttpServlet {
 	
 	private AccountService aService = new AccountService();
 	private ObjectMapper om = new ObjectMapper();
@@ -34,15 +35,17 @@ public class AccountServlet extends HttpServlet {
 		
 		String body = new String(sb);
 		
+		//The above is all so that the object mapper can easily read the body
+		
+		//Jackson will convert the json that is in the body to a java object we tell it to.
 		Account a = om.readValue(body, Account.class);
 		
-		if (aService.addAccount(a)) {
-			resp.setStatus(201);
+		if (aService.deposit(a)) {
+			resp.setStatus(200);
 		}else {
 			resp.setStatus(400);
 		}
 		
-
 	}
 
 }

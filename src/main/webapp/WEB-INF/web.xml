@@ -40,6 +40,12 @@
 		<servlet-class>com.banking.servlets.AccountServlet</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<display-name>Transaction</display-name>
+		<servlet-name>TransactionServlet</servlet-name>
+		<servlet-class>com.banking.servlets.TransactionServlet</servlet-class>
+	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>RegisterServlet</servlet-name>
 		<url-pattern>/register</url-pattern>
@@ -58,6 +64,11 @@
 	<servlet-mapping>
 		<servlet-name>AccountServlet</servlet-name>
 		<url-pattern>/accounts</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>TransactionServlet</servlet-name>
+		<url-pattern>/accounts/deposit</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

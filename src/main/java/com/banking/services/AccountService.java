@@ -27,9 +27,9 @@ public class AccountService {
 			return aDao.addAccount(account);
 		}
 	}
-	
-	public double deposit(double amount, double balance) {
-		return aDao.deposit(amount, balance);
+
+	public boolean deposit(int accountid, double balance) {
+		return aDao.deposit(accountid, balance);
 	}
 
 }
