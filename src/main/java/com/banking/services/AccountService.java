@@ -21,15 +21,17 @@ public class AccountService {
 	}
 	
 	public boolean addAccount(Account account) {
-		if(-1 ==(account.getAccountId())) {
+		if(0 ==(account.getAccountId())) {
 			return false;
 		}else {
 			return aDao.addAccount(account);
 		}
 	}
 
-	public boolean deposit(int accountid, double balance) {
-		return aDao.deposit(accountid, balance);
+	public boolean deposit(Account a) {
+	
+		return aDao.deposit(a);
+
 	}
 
 }

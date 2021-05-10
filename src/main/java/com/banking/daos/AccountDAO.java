@@ -16,7 +16,7 @@ public interface AccountDAO {
 	public int getUserId(Account user);
 	public double withdraw(double amount);
 	public double transferFunds(double amount);
-	boolean deposit(int accountid, double balance);
+	public boolean deposit(Account a);
 	
 
 }

@@ -35,9 +35,6 @@ public class TransactionServlet extends HttpServlet {
 		
 		String body = new String(sb);
 		
-		//The above is all so that the object mapper can easily read the body
-		
-		//Jackson will convert the json that is in the body to a java object we tell it to.
 		Account a = om.readValue(body, Account.class);
 		
 		if (aService.deposit(a)) {
