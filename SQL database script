@@ -1,0 +1,43 @@
+CREATE TABLE public.account (
+	accountid int4 NOT NULL,
+	balance float8 NOT NULL,
+	status int4 NULL,
+	"type" int4 NULL,
+	"user" int4 NULL,
+	CONSTRAINT account_pk PRIMARY KEY (accountid),
+	CONSTRAINT account_status_fkey FOREIGN KEY (status) REFERENCES account_status(statusid),
+	CONSTRAINT account_type_fkey FOREIGN KEY (type) REFERENCES account_type(typeid),
+	CONSTRAINT user_fkey FOREIGN KEY ("user") REFERENCES "user"(userid)
+);
+
+CREATE TABLE public.account_status (
+	statusid int4 NOT NULL,
+	status varchar NOT NULL,
+	CONSTRAINT account_status_pk PRIMARY KEY (statusid)
+);
+
+CREATE TABLE public.account_type (
+	typeid int4 NOT NULL,
+	"type" varchar NOT NULL,
+	CONSTRAINT account_type_pk PRIMARY KEY (typeid),
+	CONSTRAINT account_type_un UNIQUE ("type")
+);
+
+CREATE TABLE public."role" (
+	roleid int4 NOT NULL,
+	"role" varchar NOT NULL,
+	CONSTRAINT role_pk PRIMARY KEY (roleid)
+);
+
+CREATE TABLE public."user" (
+	userid int4 NOT NULL,
+	username varchar NOT NULL,
+	"password" varchar NOT NULL,
+	firstname varchar NOT NULL,
+	lastname varchar NOT NULL,
+	email varchar NOT NULL,
+	"role" int4 NULL,
+	CONSTRAINT user_pk PRIMARY KEY (userid),
+	CONSTRAINT user_un UNIQUE (username),
+	CONSTRAINT user_role_fkey FOREIGN KEY (role) REFERENCES role(roleid)
+);
