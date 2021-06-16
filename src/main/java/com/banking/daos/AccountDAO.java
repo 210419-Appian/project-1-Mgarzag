@@ -14,7 +14,7 @@ public interface AccountDAO {
 	public boolean addAccountWithStatus(Account status);
 	public boolean update(Account a, User u);
 	public int getUserId(Account user);
-	public double withdraw(double amount);
+	public boolean withdraw(int accountid,double amount);
 	public double transferFunds(double amount);
 	public boolean deposit(Account a);
 	

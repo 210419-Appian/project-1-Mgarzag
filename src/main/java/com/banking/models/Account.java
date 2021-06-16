@@ -6,6 +6,10 @@ public class Account {
 	 private AccountStatus status;
 	 private AccountType type;
 	 private User user;
+	 /*
+	  * Date opened.
+	  * int branchId
+	  */
 	 
 	public Account() {
 		super();

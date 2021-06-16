@@ -11,6 +11,7 @@ import java.util.List;
 import com.banking.models.Account;
 import com.banking.models.AccountStatus;
 import com.banking.models.AccountType;
+import com.banking.models.Transaction;
 import com.banking.models.User;
 import com.banking.utils.ConnectionUtil;
 
@@ -151,15 +152,20 @@ public class AccountDAOImpl implements AccountDAO {
 
 	public boolean deposit(int accountid, double balance) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
+			// Insert into a transaction table.
+			//String sql = "UPDATE account SET balance = balance+'" + balance + "'where accountid'" + accountid + "'";
+			String sql = "UPDATE account SET balance = balance+ ? where accountid=?";// + accountid + "'";
 			
-			String sql = "UPDATE account SET balance = '" + balance + "'where accountid'" + accountid + "'";
+			Transaction t = new Transaction ();
+			System.out.println (t);
 			
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
 			int index = 0;
 			statement.setDouble(++index, balance);
 			statement.setInt(++index, accountid);
-		
+			statement.execute();
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -168,15 +174,38 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 
 	@Override
-	public double withdraw(double amount) {
+	public boolean withdraw(int accountid, double amount) {
 		// TODO Auto-generated method stub
-		return 0;
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			// Insert into a transaction table.
+			//String sql = "UPDATE account SET balance = balance+'" + balance + "'where accountid'" + accountid + "'";
+			String sql = "UPDATE account SET balance = balance - ? where accountid=?";// + accountid + "'";
+			
+			PreparedStatement statement = conn.prepareStatement(sql);
+			
+			int index = 0;
+			statement.setDouble(++index, amount);
+			statement.setInt(++index, accountid);
+			statement.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 
 	@Override
 	public double transferFunds(double amount) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public boolean deposit(Account a) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

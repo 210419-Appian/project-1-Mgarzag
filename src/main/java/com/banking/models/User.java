@@ -21,7 +21,18 @@ public class User {
 			this.email = email;
 			this.role = role;
 		}
-	  
+		public User(int userId, String username, String password, String firstName, String lastName, String email,
+				int roleId, String roleName) {
+			super();
+			this.userId = userId;
+			this.username = username;
+			this.password = password;
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.email = email;
+			
+			this.role =  new Role (roleId, roleName);;
+		}
 		public User() {
 			super();
 			// TODO Auto-generated constructor stub

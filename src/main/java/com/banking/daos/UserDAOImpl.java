@@ -19,8 +19,8 @@ public class UserDAOImpl implements UserDAO {
 	public List<User> findAll() {
 		try(Connection conn = ConnectionUtil.getConnection()) {
 		
-			String sql = "SELECT * FROM \"user\";";
-			
+			//String sql = "SELECT * FROM \"user\";";
+			String sql = "SELECT * FROM view_users WHERE userid = ?";
 			Statement statement = conn.createStatement();
 			
 			ResultSet result = statement.executeQuery(sql);
@@ -35,15 +35,11 @@ public class UserDAOImpl implements UserDAO {
 				result.getString("firstname"),
 				result.getString("lastname"),
 				result.getString("email"),
-				null
+				result.getInt("role"),
+				result.getString("role_name")
 				);
-			int rId = result.getInt("role");
-			if(rId!=0) {
-				user.setRole(rDao.findById(rId));
-			}
 				list.add(user);
 			}
-			
 			return list;
 			
 		} catch(SQLException e) {
@@ -57,7 +53,7 @@ public class UserDAOImpl implements UserDAO {
 		try(Connection conn = ConnectionUtil.getConnection()) {
 			
 			String sql = "SELECT * FROM \"user\" WHERE userid = ?;";
-			
+			String sql2 = "SELECT * FROM view_users WHERE userid = ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
 			statement.setLong(1, id);
@@ -108,7 +104,8 @@ public class UserDAOImpl implements UserDAO {
 			if(user.getRole() != null) {
 				statement.setLong(++index, user.getRole().getRoleId());	
 			} else {
-				statement.setNull(++index, java.sql.Types.INTEGER);
+				//statement.setNull(++index, java.sql.Types.INTEGER);
+				statement.setLong(++index, 3);
 			}
 			
 			statement.execute();

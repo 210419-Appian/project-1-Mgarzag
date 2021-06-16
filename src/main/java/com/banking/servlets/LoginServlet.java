@@ -17,15 +17,14 @@ public class LoginServlet extends HttpServlet {
 	private UserService uService = new UserService();
 	private ObjectMapper om = new ObjectMapper();
 		
-		@Override 
-		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-				resp.setContentType("json");
-				String json = om.writeValueAsString(resp);
-				PrintWriter out = resp.getWriter();
-				HttpSession ses = req.getSession(false);
-				System.out.println(json);
-				
-		    }
+	@Override 
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+			resp.setContentType("json");
+			String json = om.writeValueAsString(resp);
+			PrintWriter out = resp.getWriter();
+			System.out.println(json);
+			
+	    }
 		
 
 	}
